@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="icon" href="/images/icon_small.png" />
+</head>
+
+<body>
+  <h1 id="bookingsH1">Table: Bookings </h1>
+  <table>
+    <thead>
+        <tr>
+            <th>Workshop</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Card Number</th>
+            <th>Created at</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i = 0; i < bookings.length; i++) { %>
+            <tr>
+                <td><%= bookings[i].workshop_name %></td>
+                <td><%= bookings[i].name %></td>
+                <td><%= bookings[i].date.toLocaleDateString() %></td>
+                <td><%= bookings[i].time %></td>
+                <td><%= bookings[i].card %></td>
+                <td>
+                    <%= new Date(bookings[i].createdAt).toLocaleDateString() %> 
+                    <%= new Date(bookings[i].createdAt).toLocaleTimeString() %>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+</body>
+
+</html>

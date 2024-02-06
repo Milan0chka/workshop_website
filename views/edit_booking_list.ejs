@@ -1,0 +1,56 @@
+<% include partion/header %>
+<hr>
+  <h1 class="titleH1">Edit booking list</h1>
+  <table class="purple_form">
+    <thead>
+        <tr>
+            <th>Workshop</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Card Number</th>
+            <th>Created at</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i = 0; i < bookings.length; i++) { %>
+            <tr>
+                <td><%= bookings[i].workshop_name %></td>
+                <td><%= bookings[i].name %></td>
+                <td><%= bookings[i].date.toLocaleDateString() %></td>
+                <td><%= bookings[i].time %></td>
+                <td><%= bookings[i].card %></td>
+                <td>
+                    <%= new Date(bookings[i].createdAt).toLocaleDateString() %> 
+                    <%= new Date(bookings[i].createdAt).toLocaleTimeString() %>
+                </td>
+                <td>
+                    <form method="get" action="/booking/edit/<%= bookings[i]._id %>">
+                        <button type="submit" class="action_button">CHANGE</button>
+                    </form>
+                    <form method="post" action="/booking/delete/<%= bookings[i]._id %>">
+                        <button class="delete-booking-button action_button" type="submit">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<script>
+    if (typeof document !== 'undefined') {
+        const deleteButtons = document.querySelectorAll('.delete-booking-button');
+        
+        deleteButtons.forEach((button) => {
+            button.addEventListener('click', function(event) {
+                const confirmed = confirm('Are you sure you want to delete your booking permanently?');
+                if (!confirmed) {
+                    event.preventDefault();
+                }
+            });
+        });
+    }
+</script>
+
+<% include partion/footer %>

@@ -1,0 +1,31 @@
+<% include partion/header %>
+<hr>
+<h1 class="titleH1">Make a booking that will change your life!</h1>
+<div class="container">
+    <div class="container_left">
+        <img src="/images/card.png" >
+    </div>
+    <div class="container_right">
+        <h2 id="formH2">Booking form</h2>
+        <div class="inputs">
+            <form action="/booking/create" method="post" >
+                <select name="workshop_name" required>
+                    <option value="Instagram promotion">Instagram promotion</option>
+                    <option value="Ultimate TikTok Feed">Ultimate TikTok Feed</option>
+                    <option value="Cathing post">Cathing post</option>
+                </select><br>
+                <label>Your name</label><br>
+                <input type="text" name="name" required><br>
+                <label>Date</label><br>
+                <input type="date" name="date" required><br>
+                <label>Time</label><br>
+                <input type="time" name="time" step="3600" min="10:00" max="19:00" required><br>
+                <label>Card number</label><br>
+                <input type="text" name="card" pattern="[0-9]{16}" required><br>
+                <input type="submit">
+                <input type="reset">
+            </form>
+        </div>
+    </div>
+</div>
+<% include partion/footer %>

@@ -1,0 +1,34 @@
+<% include partion/header %>
+<hr>
+<div class="report_container">
+<h1>Find out when workshops will be held</h1>
+<form action="/report/workshops" method="get" class="report_form">
+    <select name="workshop_name" required>
+        <option value="Instagram promotion">Instagram promotion</option>
+        <option value="Ultimate TikTok Feed">Ultimate TikTok Feed</option>
+        <option value="Cathing post">Cathing post</option>
+    </select><br>
+    <input type="submit">
+</form>
+</div>
+<% if (distinctDateTime && distinctDateTime.length > 0) { %>
+    <div class="report_container">
+    <h2>Distinct Booking Dates and Times for a workshop</h2>
+    <ul>
+        <% distinctDateTime.forEach(function(dateTime) { %>
+            <li><%= dateTime %></li>
+        <% }); %>
+    </ul>        
+    </div>
+
+<% } else if (distinctDateTime) { %>
+    <div class="report_container">
+        <h2>No bookings for this workshops!</h2>
+        <img src="/images/sad_cat2.jpg" alt="Realy sad cat">
+    </div>
+<% } %>
+
+
+
+    
+<% include partion/footer %>

@@ -1,0 +1,66 @@
+<% include partion/header %>
+
+<hr>
+<h1 class="titleH1">Update your booking <%= booking.name %> !</h1>
+<div class="container">
+    <div class="container_left">
+        <img src="/images/update_back.webp" >
+    </div>
+    <div class="container_right">
+        <h2 id="formH2">Old booking</h2>
+        <div>
+            <table class="purple_form" width="100%">
+                <thead>
+                    <tr>
+                        <th>Workshop</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Card Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><%= booking.workshop_name %></td>
+                            <td><%= booking.name %></td>
+                            <td><%= booking.date.toLocaleDateString() %></td>
+                            <td><%= booking.time %></td>
+                            <td><%= booking.card %></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2 id="formH2">Updating form</h2>
+        <div class="inputs">
+            <form action="/booking/edit/<%= booking._id %>" method="post" >
+                <select name="workshop_name" required>
+                    <option value="Instagram promotion">Instagram promotion</option>
+                    <option value="Ultimate TikTok Feed">Ultimate TikTok Feed</option>
+                    <option value="Cathing post">Cathing post</option>
+                </select><br>
+                <label>Your name</label><br>
+                <input type="text" name="name" value ="<%= booking.name %>" readonly><br>
+                <label>Date</label><br>
+                <input type="date" name="date" value ="<%= booking.date %>"required><br>
+                <label>Time</label><br>
+                <input type="time" name="time" value ="<%= booking.time %>" required><br>
+                <label>Card number</label><br>
+                <input type="text" name="card" value ="<%= booking.card %>" pattern="[0-9]{16}" required><br>
+                <input type="submit" value="Update">
+                <input type="reset">
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include partion/footer %>
+
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('update') === 'success') {
+            alert('Booking updated successfully!');
+        }
+    };
+</script>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="icon" href="/images/icon_small.png"/>
+</head>
+
+<body>
+  <header>
+    <nav class="top_nav shadow">
+      <div class="top_nav left">
+        <img src="/images/icon.png" alt="top icon" class="top_icon" />
+      </div>
+      <div class="top_nav right">
+        <a href="/" class="top_nav_link">Home</a>
+          <div class="dropdown">
+            <a class="dropbtn top_nav_link">Booking</a>
+            <div class="dropdown-content">
+              <a href="/booking/create">Create booking</a>
+              <a href="/booking/edit">Edit bookings</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a class="dropbtn top_nav_link">Report</a>
+            <div class="dropdown-content">
+              <a href="/report/bookings">Report booking</a>
+              <a href="/report/workshops">Report workshop</a>
+            </div>
+          </div>
+        <a href="/about" class="top_nav_link">About</a>
+        <a href="/help" class="top_nav_link">Help</a>
+      </div>
+    </nav>
+  </header>
+  <main>

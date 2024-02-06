@@ -1,0 +1,51 @@
+<% include partion/header %>
+<hr>
+<div class="report_container">
+    <h1>Search for a bookings</h1>
+    <form action="/report/bookings" method="get" class="report_form">
+    <label>Your name (optional)</label>
+    <input type="text" name="name" >
+    <label>Search start date</label>
+    <input type="date" name="date_start" required>
+    <label>Search end date</label>
+    <input type="date" name="date_end" required>
+    <input type="submit">
+</form>
+</div>
+
+<% if (typeof bookings !== 'undefined' && bookings.length > 0){ %>
+<table class="purple_form">
+    <thead>
+        <tr>
+            <th>Workshop</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Card Number</th>
+            <th>Created at</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i = 0; i < bookings.length; i++) { %>
+            <tr>
+                <td><%= bookings[i].workshop_name %></td>
+                <td><%= bookings[i].name %></td>
+                <td><%= bookings[i].date.toLocaleDateString() %></td>
+                <td><%= bookings[i].time %></td>
+                <td><%= bookings[i].card %></td>
+                <td>
+                    <%= new Date(bookings[i].createdAt).toLocaleDateString() %> 
+                    <%= new Date(bookings[i].createdAt).toLocaleTimeString() %>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } else  if (typeof bookings !== 'undefined'){ %>
+    <div class="report_container">
+        <h2>No bookings at this date found!</h2>
+        <img src="/images/sad_cat1.jpg" alt="Realy sad cat">
+    </div>
+<% } %>
+
+<% include partion/footer %>
